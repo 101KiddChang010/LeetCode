@@ -1,14 +1,12 @@
 var twoSum = function(nums, target) {
-    let result = [];
+    let hash = {};
 
     for (let x = 0; x < nums.length; x++) {
-        for (let y = 1+x; y < nums.length; y++) {
-            if (nums[x] + nums[y] === target) {
-                result.push(nums.indexOf(nums[x]));
-                result.push(nums.indexOf(nums[y], y));
-            }
-        }
+        const complement = target - nums[x];
+        if (hash.hasOwnProperty(complement))
+            return [hash[complement], x];
+        hash[nums[x]] = x;
     }
 
-    return result;
+    return [];
 }
